@@ -1,6 +1,6 @@
 package.cpath = package.cpath .. ";/usr/local/lib/?.so"
 rs232 = require "luars232"
-bit = require "bit.numberlua"
+bit = require "lua-firmata.bit.numberlua"
 socket = require "socket"
 
 function write_format(little_endian, format, ...)
