@@ -1,16 +1,15 @@
 #Rainy-Day
 
+This project is a graphical tool to test, developp drivers and have fun with [Arduino](http://www.arduino.cc/) and any hardware (motors, sensors, servos..).
 
-Lua triggered event from rain detection. A simple project for me to train with [Arduino](http://www.arduino.cc/) and [Firmata](http://firmata.org/wiki/Main_Page).
-This project uses and bundles [Arduino Firmata for Lua](https://github.com/sivieri/lua-firmata)
+This project uses and bundles [Arduino Firmata for Lua](https://github.com/sivieri/lua-firmata) and [Firmata](http://firmata.org/wiki/Main_Page).
+The GUI is built with [Love2D](http://love2D.org) and amazing [Love Frames](https://github.com/NikolaiResokav/LoveFrames/).
 
 ##Installation
 
 ###Software
 
-This was tested on:
-* Ubuntu 13.10
-* Xubuntu 12.4
+This was only tested on Linux. Tests on other platforms are welcome..
 
 You'll have to install the following packages:
 * lua5.1
@@ -18,13 +17,11 @@ You'll have to install the following packages:
 * luaposix
 * lua-socket
 * [librs232](https://github.com/ynezz/librs232)
+* [Love2D](http://love2D.org)
 
 ###Hardware
 
-You'll need:
-* An Arduino with USB cable
-* One or more servomotor or any actuator (optional) 
-* Wires
+
 
 
 
