@@ -15,6 +15,7 @@ ELEMS = {}
 
 function loadElements()
    require "toolbar"
+   require "objects"
 end
 
 function loadLibs()

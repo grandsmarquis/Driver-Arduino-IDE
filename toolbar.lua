@@ -1,12 +1,14 @@
 function updateConnetionStatus()
-   if connectionStatus == "good" then
+   if connectionStatus == "good" or true then
       infoConnection:SetText({{0, 255, 0, 255}, "Connection status : \"Connected\""})
       devInfoButton:SetClickable(true)
       objectsButton:SetClickable(true)
+      addObjectButton:SetClickable(true)
    else
       infoConnection:SetText({{255, 0, 0, 255}, "Connection status : \"Not connected\""})
       devInfoButton:SetClickable(false)
       objectsButton:SetClickable(false)
+      addObjectButton:SetClickable(false)
    end
 end
 
@@ -27,7 +29,7 @@ function makeToolbar()
    infoConnection:SetText({{0, 0, 0, 255}, "Connection status : \"\""})
 
    local devButton = loveframes.Create("button", toolbar)
-   devButton:SetPos(toolbar:GetWidth() - 315, 5)
+   devButton:SetPos(toolbar:GetWidth() - 420, 5)
    devButton:SetSize(100, 25)
    devButton:SetText("Choose device")
    devButton.OnClick = function()
@@ -35,7 +37,7 @@ function makeToolbar()
                        end
 
    devInfoButton = loveframes.Create("button", toolbar)
-   devInfoButton:SetPos(toolbar:GetWidth() - 210, 5)
+   devInfoButton:SetPos(toolbar:GetWidth() - 315, 5)
    devInfoButton:SetSize(100, 25)
    devInfoButton:SetText("Device infos")
    devInfoButton.OnClick = function()
@@ -43,12 +45,24 @@ function makeToolbar()
                            end
 
    objectsButton = loveframes.Create("button", toolbar)
-   objectsButton:SetPos(toolbar:GetWidth() - 105, 5)
+   objectsButton:SetPos(toolbar:GetWidth() - 210, 5)
    objectsButton:SetSize(100, 25)
    objectsButton:SetText("See elements")
    objectsButton.OnClick = function()
                               makeObjects()
                            end
+
+   addObjectButton = loveframes.Create("button", toolbar)
+   addObjectButton:SetPos(toolbar:GetWidth() - 105, 5)
+   addObjectButton:SetSize(100, 25)
+   addObjectButton:SetText("Add element")
+   addObjectButton.OnClick = function()
+                              makeNewObject()
+                           end
+end
+
+function makeNewObject()
+
 end
 
 function makeDeviceInfo()
