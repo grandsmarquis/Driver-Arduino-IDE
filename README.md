@@ -1,4 +1,4 @@
-#Rainy-Day
+#DAIDE
 
 This project is a graphical tool to test, developp drivers and have fun with [Arduino](http://www.arduino.cc/) and any hardware (motors, sensors, servos..).
 
