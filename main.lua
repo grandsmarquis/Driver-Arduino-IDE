@@ -3,7 +3,7 @@
 --
 
 DEFAULT = {
-   device = "/dev/ATM0"
+   device = "/dev/ttyACM0"
 }
 
 device = DEFAULT.device
@@ -14,6 +14,7 @@ ELEMS = {}
 
 
 function loadElements()
+   require "arduino"
    require "toolbar"
    require "objects"
 end
@@ -51,6 +52,7 @@ end
 
 function love.update(dt)
    loveframes.update(dt)
+   updateArduino(dt)
 end
                  
 function love.draw()

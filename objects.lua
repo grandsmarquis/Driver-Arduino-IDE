@@ -1,13 +1,15 @@
 Objects = {
    t = {
    },
-   New = function(name, type, port)
+   New = function(name, type, pin)
 	    res = {}
 	    res.name = name
 	    res.type = type
 	    res.pin = pin
 	    res.value = 0
+	    res.output = 0
 	    Objects.t[name] = res
+	    initObjectArduino(res)
 	    return res
 	 end,
    getID = function()
@@ -33,6 +35,12 @@ function makeObjects()
    objList:AddColumn("Name")
    objList:AddColumn("Type")
    objList:AddColumn("Pin")
+   objList.OnRowClicked = function(parent, row, rowdata)
+			     for k, v in ipairs(rowdata) do
+				makeObject(Objects.t[v])
+				return
+			     end
+			  end
    updateObjectList()
 end
 
@@ -93,6 +101,34 @@ function updateObjectList()
    if objList == nil then return end
    objList:Clear()
    for i,j in pairs(Objects.t) do
-      objList:AddRow(j.name, tostring(j.type), tostring(j.port))
+      objList:AddRow(j.name, tostring(j.type), tostring(j.pin))
    end
+end
+
+function makeObject(obj)
+   if obj.type == "Servo" then
+      makeServo(obj)
+   end
+end
+
+function makeServo(obj)
+   local frame = loveframes.Create("frame")
+   frame:SetName(obj.name .. " | pin : " .. obj.pin)
+   frame:SetSize(300, 220)
+   frame:SetPos(300, 150)
+
+   local label1 = loveframes.Create("text", frame)
+   label1:SetText("Output value: " .. obj.output)
+   label1:SetPos(5, 30)
+   label1:SetShadowColor(200, 200, 200, 255)
+
+   local slider1 = loveframes.Create("slider", frame)
+   slider1:SetPos(5, 60)
+   slider1:SetWidth(290)
+   slider1:SetMinMax(obj.min, obj.max)
+   slider1.OnValueChanged = function(object)
+ 			       obj.output = math.floor(object:GetValue())
+			       label1:SetText("Output value: " .. obj.output)
+			    end
+
 end
