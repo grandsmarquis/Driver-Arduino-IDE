@@ -8,6 +8,10 @@ Objects = {
 	    res.pin = pin
 	    res.value = 0
 	    res.output = 0
+	    res.input = 0
+	    res.linkedTo = ""
+	    res.linkedOn = 0
+	    res.linkedOff = 0
 	    Objects.t[name] = res
 	    initObjectArduino(res)
 	    return res
@@ -109,7 +113,50 @@ end
 function makeObject(obj)
    if obj.type == "Servo" then
       makeServo(obj)
+   elseif obj.type == "Input" then
+      makeInput(obj)
    end
+end
+
+function makeInput(obj)
+   local frame = loveframes.Create("frame")
+   frame:SetName(obj.name .. " | pin : " .. obj.pin)
+   frame:SetSize(300, 220)
+   frame:SetPos(300, 150)
+
+   local label1 = loveframes.Create("text", frame)
+   label1:SetText("Linked to")
+   label1:SetPos(5, 30)
+   label1:SetShadowColor(200, 200, 200, 255)
+
+   local textinput = loveframes.Create("textinput", frame)
+   textinput:SetPos(5, 50)
+   textinput:SetText(obj.linkedTo)
+   textinput:SetWidth(200)
+   textinput:SetFont(love.graphics.newFont(12))
+
+   local label2 = loveframes.Create("text", frame)
+   label2:SetText("On value")
+   label2:SetPos(5, 80)
+   label2:SetShadowColor(200, 200, 200, 255)
+
+   local numberbox = loveframes.Create("numberbox", frame)
+   numberbox:SetPos(5, 100)
+   numberbox:SetSize(200, 25)
+   numberbox:SetMin(0)
+   numberbox:SetMax(255)
+
+   local label2 = loveframes.Create("text", frame)
+   label2:SetText("Off value")
+   label2:SetPos(5, 130)
+   label2:SetShadowColor(200, 200, 200, 255)
+
+   local numberbox2 = loveframes.Create("numberbox", frame)
+   numberbox2:SetPos(5, 150)
+   numberbox2:SetSize(200, 25)
+   numberbox2:SetMin(0)
+   numberbox2:SetMax(255)
+
 end
 
 function makeServo(obj)
@@ -122,6 +169,7 @@ function makeServo(obj)
    label1:SetText("Output value: " .. obj.output)
    label1:SetPos(5, 30)
    label1:SetShadowColor(200, 200, 200, 255)
+
 
    local slider1 = loveframes.Create("slider", frame)
    slider1:SetPos(5, 60)
